@@ -28,7 +28,7 @@ using NUnit.Framework.Internal;
 using NUnit.TestData;
 using NUnit.TestUtilities;
 
-#if NET_4_5
+#if NET_4_0 || NET_4_5
 using System.Threading.Tasks;
 #endif
 
@@ -213,7 +213,7 @@ namespace NUnit.Framework.Assertions
             return 5;
         }
 
-#if NET_4_5
+#if NET_4_0 || NET_4_5
         [Test]
         public void AssertThatSuccess()
         {
@@ -256,7 +256,11 @@ namespace NUnit.Framework.Assertions
 
         private static Task<int> One()
         {
+#if NET_4_5
             return Task.Run(() => 1);
+#elif NET_4_0
+            return TaskEx.Run(() => 1);
+#endif
         }
 
         private static async Task<int> ThrowExceptionGenericTask()

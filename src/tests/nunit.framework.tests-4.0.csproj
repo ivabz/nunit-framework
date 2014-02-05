@@ -226,6 +226,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="nunit.framework.tests.build" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\framework\nunit.framework-4.0.csproj">
@@ -237,4 +238,5 @@
       <Name>nunit.testdata-4.0</Name>
     </ProjectReference>
   </ItemGroup>
+  <Import Project="..\..\packages\Microsoft.Bcl.Build.1.0.4\tools\Microsoft.Bcl.Build.targets" />
 </Project>
