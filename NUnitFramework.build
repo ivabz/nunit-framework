@@ -76,6 +76,8 @@
     value="${path::combine(project.base.dir,'../tools')}"/>
   <property name="partcover.dir"
     value="${path::combine(project.tools.dir, 'PartCover')}"/>
+  <property name="project.packages.dir"
+    value="${path::combine(project.base.dir,'packages')}"/>
 
 <!-- ***************************************************************** -->
 <!-- *********         Define Packaging Directories          ********* -->

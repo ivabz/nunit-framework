@@ -1,9 +1,11 @@
-#if NET_4_5
+#if NET_4_0 || NET_4_5
 using System;
-using System.Threading;
 using System.Threading.Tasks;
 using NUnit.Framework;
-using NUnit.Framework.Internal;
+
+#if NET_4_0
+using Task = System.Threading.Tasks.TaskEx;
+#endif
 
 namespace NUnit.TestData
 {
@@ -34,7 +36,7 @@ namespace NUnit.TestData
 		}
 
 		[Test]
-		public async Task AsyncTaskSuccess()
+		public async System.Threading.Tasks.Task AsyncTaskSuccess()
 		{
             var result = await ReturnOne();
 
@@ -42,7 +44,7 @@ namespace NUnit.TestData
 		}
 
 		[Test]
-		public async Task AsyncTaskFailure()
+        public async System.Threading.Tasks.Task AsyncTaskFailure()
 		{
 			var result = await ReturnOne();
 
@@ -50,7 +52,7 @@ namespace NUnit.TestData
 		}
 
 		[Test]
-		public async Task AsyncTaskError()
+        public async System.Threading.Tasks.Task AsyncTaskError()
 		{
 			await ThrowException();
 
@@ -120,7 +122,7 @@ namespace NUnit.TestData
 
 		[Test]
 		[ExpectedException(typeof(InvalidOperationException))]
-		public async Task AsyncTaskExpectedException()
+        public async System.Threading.Tasks.Task AsyncTaskExpectedException()
 		{
 			await ThrowException();
 		}
@@ -163,7 +165,7 @@ namespace NUnit.TestData
 		}
 
 		[Test]
-		public async Task NestedAsyncTaskSuccess()
+        public async System.Threading.Tasks.Task NestedAsyncTaskSuccess()
 		{
             var result = await Task.Run(async () => await ReturnOne());
 
@@ -171,7 +173,7 @@ namespace NUnit.TestData
 		}
 
 		[Test]
-		public async Task NestedAsyncTaskFailure()
+        public async System.Threading.Tasks.Task NestedAsyncTaskFailure()
 		{
 			var result = await Task.Run(async () => await ReturnOne());
 
@@ -179,7 +181,7 @@ namespace NUnit.TestData
 		}
 
 		[Test]
-		public async Task NestedAsyncTaskError()
+        public async System.Threading.Tasks.Task NestedAsyncTaskError()
 		{
 			await Task.Run(async () => await ThrowException());
 
@@ -282,7 +284,7 @@ namespace NUnit.TestData
         }
 
         [Test]
-        public async Task TaskCheckTestContextAcrossTasks()
+        public async System.Threading.Tasks.Task TaskCheckTestContextAcrossTasks()
         {
             var testName = await GetTestNameFromContext();
 
@@ -302,7 +304,7 @@ namespace NUnit.TestData
         }
 
         [Test]
-        public async Task TaskCheckTestContextWithinTestBody()
+        public async System.Threading.Tasks.Task TaskCheckTestContextWithinTestBody()
         {
             var testName = TestContext.CurrentContext.Test.Name;
 
@@ -335,7 +337,7 @@ namespace NUnit.TestData
             await Task.Run(() => { throw new InvalidOperationException(); });
         }
 
-        private static async Task ThrowExceptionIn(TimeSpan delay)
+        private static async System.Threading.Tasks.Task ThrowExceptionIn(TimeSpan delay)
         {
             await Task.Delay(delay);
             throw new InvalidOperationException();
