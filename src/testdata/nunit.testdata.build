@@ -1,33 +1,23 @@
 <?xml version="1.0"?>
 <project name="TestData" default="build" basedir=".">
-  <assemblyfileset id="Microsoft.Bcl.Async_net-4.0" basedir="${path::combine(project.packages.dir,'packages')}">
-    <lib>
-      <include name="Microsoft.Bcl.1.0.19\lib\net40"></include>
-      <include name="Microsoft.Bcl.Async.1.0.165\lib\net40"></include>
-    </lib>
-    <include name="Microsoft.Threading.Tasks.dll" />
-    <include name="Microsoft.Threading.Tasks.Extensions.dll" />
-    <include name="Microsoft.Threading.Tasks.Extensions.Desktop.dll" />
-    <include name="System.Runtime.dll" />
-    <include name="System.Threading.Tasks" />
-  </assemblyfileset>
-
-  <target name="build">
+ <target name="build">
     <csc target="library" 
         output="${current.build.dir}/nunit.testdata.dll"
         debug="${build.debug}" 
         define="${build.defines}"
-        warninglevel="${warn}">
+        warninglevel="${warn}"
+        verbose="true">
       <sources basedir=".">
         <include name="*.cs"/>
       </sources>
-      <references basedir="${current.build.dir}">
-        <include name="nunit.framework.dll"/>
-        <include name="nunit.interfaces.dll"/>
+      <references>
+        <include name="${path::combine(current.build.dir,'nunit.framework.dll')}"/>
+        <include name="${path::combine(project.packages.dir,'Microsoft.Bcl.Async.1.0.165/lib/net40/Microsoft.Threading.Tasks.dll')}" />
+        <include name="${path::combine(project.packages.dir,'Microsoft.Bcl.Async.1.0.165/lib/net40/Microsoft.Threading.Tasks.Extensions.dll')}" />
+        <include name="${path::combine(project.packages.dir,'Microsoft.Bcl.Async.1.0.165/lib/net40/Microsoft.Threading.Tasks.Extensions.Desktop.dll')}" />
+        <include name="${path::combine(project.packages.dir,'Microsoft.Bcl.1.0.19/lib/net40/System.Runtime.dll')}" />
+        <include name="${path::combine(project.packages.dir,'Microsoft.Bcl.1.0.19/lib/net40/System.Threading.Tasks.dll')}" />
       </references>
-      <if test="${runtime.config=='net-4.0'}">
-        <references refid="Microsoft.Bcl.Async_net-4.0"></references>
-      </if>
     </csc>
   </target>
 
