@@ -70,15 +70,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution", "Solution", "{65C1066B-4BEC-48A0-9456-1F0406448AF5}"
 	ProjectSection(SolutionItems) = preProject
 		LICENSE.txt = LICENSE.txt
-		src\mock-assembly\mock-assembly.build = src\mock-assembly\mock-assembly.build
 		NOTICES.txt = NOTICES.txt
-		src\framework\nunit.framework.build = src\framework\nunit.framework.build
-		src\tests\nunit.framework.tests.build = src\tests\nunit.framework.tests.build
-		src\testdata\nunit.testdata.build = src\testdata\nunit.testdata.build
 		NUnitFramework.build = NUnitFramework.build
-		src\framework\nunitlite.build = src\framework\nunitlite.build
-		src\testdata\nunitlite.testdata.build = src\testdata\nunitlite.testdata.build
-		src\tests\nunitlite.tests.build = src\tests\nunitlite.tests.build
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SL-5.0", "SL-5.0", "{5C0BC8AB-B491-47E3-AFEC-59A2E15A2C85}"

@@ -1,5 +1,16 @@
 <?xml version="1.0"?>
 <project name="TestData" default="build" basedir=".">
+  <assemblyfileset id="Microsoft.Bcl.Async_net-4.0" basedir="${path::combine(project.packages.dir,'packages')}">
+    <lib>
+      <include name="Microsoft.Bcl.1.0.19\lib\net40"></include>
+      <include name="Microsoft.Bcl.Async.1.0.165\lib\net40"></include>
+    </lib>
+    <include name="Microsoft.Threading.Tasks.dll" />
+    <include name="Microsoft.Threading.Tasks.Extensions.dll" />
+    <include name="Microsoft.Threading.Tasks.Extensions.Desktop.dll" />
+    <include name="System.Runtime.dll" />
+    <include name="System.Threading.Tasks" />
+  </assemblyfileset>
 
   <target name="build">
     <csc target="library" 
@@ -14,6 +25,9 @@
         <include name="nunit.framework.dll"/>
         <include name="nunit.interfaces.dll"/>
       </references>
+      <if test="${runtime.config=='net-4.0'}">
+        <references refid="Microsoft.Bcl.Async_net-4.0"></references>
+      </if>
     </csc>
   </target>
 
